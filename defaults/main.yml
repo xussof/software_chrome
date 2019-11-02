@@ -1,0 +1,7 @@
+---
+
+software_packages:
+  - google-chrome-stable
+
+repo_url: 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' # chrome repository
+repo_key: 'https://dl-ssl.google.com/linux/linux_signing_key.pub' # chrome key

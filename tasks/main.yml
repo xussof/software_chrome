@@ -1,0 +1,47 @@
+---
+
+- name: Add apt-key
+  become: true
+  apt_key:
+     url: "{{ repo_key }}"
+     state: present
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Add  repository
+  become: true
+  apt_repository:
+    repo: '{{ repo_url }}'
+    state: present
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Installing packages
+  become: true
+  apt:
+    update_cache: yes
+    pkg: "{{ item }}"
+    state: latest
+  with_items: "{{software_packages}}"
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Insert/Update "Match User" configuration block in /etc/ssh/sshd_config
+  become: true
+  blockinfile:
+    path: /etc/yum.repos.d/google-chrome.repo
+    create: yes
+    block: |
+      [google-chrome]
+      name=google-chrome
+      baseurl=http://dl.google.com/linux/chrome/rpm/stable/$basearch
+      enabled=1
+      gpgcheck=1
+      gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+  when: ansible_distribution == 'CentOS'
+
+- name: Installing packages
+  become: true
+  yum:
+    pkg: "{{ item }}"
+    update_cache: yes
+    state: latest
+  with_items: "{{ software_packages }}"
+  when: ansible_distribution == 'CentOS'
