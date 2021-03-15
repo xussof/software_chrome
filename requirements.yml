@@ -1,20 +1,5 @@
 ---
-- src: git@github.com:xussof/software_software-properties-common
+- src: git@github.com:xussof/software_chrome
   scm: git
   version: master
-  name: xussof.software_software-properties-common
-
-- src: git@github.com:xussof/software_curl
-  scm: git
-  version: master
-  name: xussof.software_curl
-
-- src: git@github.com:xussof/software_ca-certificates
-  scm: git
-  version: master
-  name: xussof.software_ca-certificates
-
-- src: git@github.com:xussof/software_apt-transport-https
-  scm: git
-  version: master
-  name: xussof.software_apt-transport-https
+  name: software_chrome
